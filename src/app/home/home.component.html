@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Verificación de Contraseñas Seguras</h1>
+  <form class="form-container" [formGroup]="form">
+    <div class="row">
+      <app-input-password id="passwordInput" [control]="passwordControl"></app-input-password>
+    </div>
+    <div class="row">
+      <app-input id="emailInput" label="Correo Electrónico:" placeholder="Ingrese su correo electrónico" [control]="emailControl"></app-input>
+      <app-button id="sendReport" [disabled]="form.invalid" (click)="sendReport($event)" label="Enviar reporte"></app-button>
+    </div>
+    <div class="loading-container" *ngIf="loading">
+      <div class="loading">
+        <span>Enviando reporte...</span>
+      </div>
+    </div>
+    <div class="report-result" *ngIf="showReportResult">
+      <span>Resultado del reporte:</span>
+      <pre>{{ reportResult() }}</pre>
+    </div>
+  </form>
+</div>

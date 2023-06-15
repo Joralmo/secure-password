@@ -1,0 +1,4 @@
+<div class="input-container">
+  <label for="{{ id }}">{{ label }}</label>
+  <input type="{{ type }}" id="{{ id }}" placeholder="{{ placeholder }}" class="input-field" [formControl]="control" (input)="emitValue()" />
+</div>

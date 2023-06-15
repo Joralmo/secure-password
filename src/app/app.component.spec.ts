@@ -1,27 +1,22 @@
-import { TestBed } from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import { Spectator, createComponentFactory } from "@ngneat/spectator";
+import { AppComponent } from "./app.component";
+import { HomeComponent } from "./home/home.component";
+import { InputComponent } from "./input/input.component";
+import { ButtonComponent } from "./button/button.component";
+import { InputPasswordComponent } from "./input-password/input-password.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
-describe('AppComponent', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    declarations: [AppComponent]
-  }));
-
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+describe("AppComponent", () => {
+  let spectator: Spectator<AppComponent>;
+  const createComponent = createComponentFactory({
+    component: AppComponent,
+    declarations: [ HomeComponent, InputComponent, ButtonComponent, InputPasswordComponent ],
+    imports: [ ReactiveFormsModule ]
   });
 
-  it(`should have as title 'secure-password'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('secure-password');
-  });
+  beforeEach(() => spectator = createComponent());
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('secure-password app is running!');
+  it("Debería crear el componente", () => {
+    expect(spectator.component).toBeTruthy();
   });
 });
